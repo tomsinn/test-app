@@ -4,6 +4,11 @@ use crate::file::FileHandler;
 mod file;
 
 fn main() -> io::Result<()> {
+    file_test().expect("File test failed!");
+    Ok(())
+}
+
+fn file_test() -> io::Result<()> {
     let file_path = "text-files/example.txt";
     let mut handler = FileHandler::new(file_path)?;
 
