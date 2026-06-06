@@ -1,11 +1,18 @@
 use std::io;
+use crate::db::query_db;
 use crate::file::FileHandler;
 
 mod file;
+mod db;
 
 fn main() -> io::Result<()> {
     file_test().expect("File test failed!");
+    db_test().expect("Database test failed!");
     Ok(())
+}
+
+fn db_test() -> Result<(), sqlx::Error> {
+    query_db()
 }
 
 fn file_test() -> io::Result<()> {
