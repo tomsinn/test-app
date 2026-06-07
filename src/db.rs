@@ -10,8 +10,10 @@ struct User {
 
 #[tokio::main]
 pub async fn query_db() -> Result<(), sqlx::Error> {
+    dotenvy::dotenv().ok();
+
     let database_url = env::var("DATABASE_URL")
-        .unwrap_or_else(|_| "mysql://root:secret@127.0.0.1:3306/rust".to_string());
+        .expect("DATABASE_URL environment variable must be set");
 
     let pool = MySqlPoolOptions::new()
         .max_connections(5)
